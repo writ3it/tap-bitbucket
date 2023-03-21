@@ -1,0 +1,575 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "selected": true,
+  "replication_key": "updated_on",
+  "properties": {
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "html": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "commits": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "approve": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "diff": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "diffstat": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "comments": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "activity": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "merge": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "decline": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        }
+      },
+      "required": [
+        "self",
+        "html",
+        "commits",
+        "approve",
+        "diff",
+        "diffstat",
+        "comments",
+        "activity",
+        "merge",
+        "decline"
+      ]
+    },
+    "id": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "rendered": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "string"
+            },
+            "markup": {
+              "type": "string"
+            },
+            "html": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "raw",
+            "markup",
+            "html"
+          ]
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "string"
+            },
+            "markup": {
+              "type": "string"
+            },
+            "html": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "raw",
+            "markup",
+            "html"
+          ]
+        },
+        "reason": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "string"
+            },
+            "markup": {
+              "type": "string"
+            },
+            "html": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "raw",
+            "markup",
+            "html"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "reason"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "string"
+        },
+        "markup": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "raw",
+        "markup",
+        "html"
+      ]
+    },
+    "state": {
+      "type": "string"
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object"
+        },
+        "created_on": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "links",
+        "created_on",
+        "display_name",
+        "username",
+        "uuid"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "branch": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "merge_strategies": {
+              "type": "array",
+              "items":
+                {
+                  "type": "string"
+                }
+
+            },
+            "default_merge_strategy": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "merge_strategies",
+            "default_merge_strategy"
+          ]
+        },
+        "commit": {
+          "type": "object",
+          "properties": {
+            "hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "hash"
+          ]
+        }
+      },
+      "required": [
+        "repository",
+        "branch",
+        "commit"
+      ]
+    },
+    "destination": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "branch": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "merge_strategies": {
+              "type": "array",
+              "items":
+                {
+                  "type": "string"
+                }
+
+            },
+            "default_merge_strategy": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "merge_strategies",
+            "default_merge_strategy"
+          ]
+        },
+        "commit": {
+          "type": "object",
+          "properties": {
+            "hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "hash"
+          ]
+        }
+      },
+      "required": [
+        "repository",
+        "branch",
+        "commit"
+      ]
+    },
+    "merge_commit": {
+      "type": ["null","object"],
+      "properties": {
+        "hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "hash"
+      ]
+    },
+    "comment_count": {
+      "type": "integer"
+    },
+    "task_count": {
+      "type": "integer"
+    },
+    "close_source_branch": {
+      "type": "boolean"
+    },
+    "closed_by": {
+      "type": ["null","object"],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object"
+        },
+        "created_on": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "links",
+        "created_on",
+        "display_name",
+        "username",
+        "uuid"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "created_on": {
+      "type": "string"
+    },
+    "updated_on": {
+      "type": "string"
+    },
+    "reviewers": {
+      "type": "array",
+      "items":
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "links": {
+              "type": "object"
+            },
+            "created_on": {
+              "type": "string"
+            },
+            "display_name": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "uuid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "links",
+            "created_on",
+            "display_name",
+            "username",
+            "uuid"
+          ]
+        }
+
+    },
+    "participants": {
+      "type": "array",
+      "items":
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "role": {
+              "type": "string"
+            },
+            "approved": {
+              "type": "boolean"
+            },
+            "state": {
+              "type": "string"
+            },
+            "participated_on": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type",
+            "user",
+            "role",
+            "approved",
+            "state",
+            "participated_on"
+          ]
+        }
+
+    }
+  },
+  "required": [
+    "links",
+    "id",
+    "title",
+    "rendered",
+    "summary",
+    "state",
+    "author",
+    "source",
+    "destination",
+    "merge_commit",
+    "comment_count",
+    "task_count",
+    "close_source_branch",
+    "closed_by",
+    "reason",
+    "created_on",
+    "updated_on",
+    "reviewers",
+    "participants"
+  ]
+}
+

@@ -1,0 +1,388 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "selected": true,
+  "replication_key": "date",
+  "properties": {
+    "rendered": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "object",
+          "properties": {
+            "raw": {
+              "type": "string"
+            },
+            "markup": {
+              "type": "string"
+            },
+            "html": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "raw",
+            "markup",
+            "html",
+            "type"
+          ]
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "hash": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href"
+              ]
+            },
+            "html": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href"
+              ]
+            },
+            "avatar": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href"
+              ]
+            }
+          },
+          "required": [
+            "self",
+            "html",
+            "avatar"
+          ]
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "full_name",
+        "links",
+        "uuid"
+      ]
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "comments": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "patch": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "html": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "diff": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "approve": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        },
+        "statuses": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href"
+          ]
+        }
+      },
+      "required": [
+        "self",
+        "comments",
+        "patch",
+        "html",
+        "diff",
+        "approve",
+        "statuses"
+      ]
+    },
+    "author": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "display_name": {
+              "type": "string"
+            },
+            "uuid": {
+              "type": "string"
+            },
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href"
+                  ]
+                },
+                "html": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href"
+                  ]
+                },
+                "avatar": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href"
+                  ]
+                }
+              },
+              "required": [
+                "self",
+                "html",
+                "avatar"
+              ]
+            },
+            "type": {
+              "type": "string"
+            },
+            "nickname": {
+              "type": "string"
+            },
+            "account_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "display_name",
+            "uuid",
+            "links",
+            "type",
+            "nickname",
+            "account_id"
+          ]
+        }
+      },
+      "required": [
+        "raw",
+        "type",
+        "user"
+      ]
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "raw": {
+          "type": "string"
+        },
+        "markup": {
+          "type": "string"
+        },
+        "html": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "raw",
+        "markup",
+        "html",
+        "type"
+      ]
+    },
+    "participants": {
+      "type": "array",
+      "items": {}
+    },
+    "parents": {
+      "type": "array",
+      "items":
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "hash": {
+              "type": "string"
+            },
+            "links": {
+              "type": "object",
+              "properties": {
+                "self": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href"
+                  ]
+                },
+                "html": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href"
+                  ]
+                }
+              },
+              "required": [
+                "self",
+                "html"
+              ]
+            }
+          },
+          "required": [
+            "type",
+            "hash",
+            "links"
+          ]
+        }
+
+    },
+    "date": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "rendered",
+    "hash",
+    "repository",
+    "links",
+    "author",
+    "summary",
+    "participants",
+    "parents",
+    "date",
+    "message",
+    "type"
+  ]
+}

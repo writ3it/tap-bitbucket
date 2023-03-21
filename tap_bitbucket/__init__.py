@@ -1,14 +1,54 @@
 #!/usr/bin/env python3
+import base64
+import datetime
 import os
 import json
+
+import pytz
+import requests
 import singer
-from singer import utils, metadata
+from requests import Session
+from singer import utils, metadata, Transformer
 from singer.catalog import Catalog, CatalogEntry
 from singer.schema import Schema
 
+from strict_rfc3339 import rfc3339_to_timestamp
 
 REQUIRED_CONFIG_KEYS = ["start_date", "username", "password"]
 LOGGER = singer.get_logger()
+
+
+def get_abs_path(path):
+    return os.path.join(os.path.dirname(os.path.realpath(__file__)), path)
+
+
+def load_schema(entity):
+    return utils.load_json(get_abs_path("schemas/{}.json".format(entity)))
+
+
+RESOURCES = {
+    "repositories": {
+        "url": "https://api.bitbucket.org/2.0/repositories/{}?sort=updated_on",
+        "schema": load_schema('repositories'),
+        'key_properties': ['uuid'],
+        'replication_method': 'FULL_TABLE',
+        'replication_key': 'updated_on'
+    },
+    "repositories_pullrequests": {
+        "url": "https://api.bitbucket.org/2.0/repositories/{}/{}/pullrequests",
+        'schema': load_schema('repositories_pullrequests'),
+        'key_properties': ['id'],
+        'replication_method': 'FULL_TABLE',
+        'replication_key': 'updated_on'
+    },
+    "repositories_pullrequests_commits": {
+        "url": "https://api.bitbucket.org/2.0/repositories/{}/{}/pullrequests/{}/commits",
+        'schema': load_schema('repositories_pullrequests_commits'),
+        'key_properties': ['hash'],
+        'replication_method': 'FULL_TABLE',
+        'replication_key': 'date'
+    }
+}
 
 
 def get_abs_path(path):
@@ -52,39 +92,81 @@ def discover():
     return Catalog(streams)
 
 
+def format_timestamp(data, typ, schema):
+    result = data
+    if typ == 'string' and schema.get('format') == 'date-time':
+        rfc3339_ts = rfc3339_to_timestamp(data)
+        utc_dt = datetime.datetime.utcfromtimestamp(rfc3339_ts).replace(tzinfo=pytz.UTC)
+        result = utils.strftime(utc_dt)
+
+    return result
+
+
+def sync_resource(url: str,replication_key:str, stream, session: Session, headers: dict, next=None):
+    transformer = Transformer(pre_hook=format_timestamp)
+
+    while True:
+        page = session.get(url, headers=headers).json()
+        LOGGER.info(url)
+        if len(page['values']) == 0:
+            LOGGER.info("{} is empty".format(url))
+        for record in page['values']:
+            item = transformer.transform(record, stream.schema.to_dict())
+            time_extracted = utils.now()
+            singer.write_record(stream.tap_stream_id, item, time_extracted=time_extracted)
+            singer.write_state({stream.tap_stream_id: item[replication_key]})
+
+            if next is not None:
+                next(item, session, headers)
+            else:
+                LOGGER.info("LEAF")
+
+        if 'next' in page:
+            url = page['next']
+        else:
+            break
+
+
 def sync(config, state, catalog):
     """ Sync data from tap source """
     # Loop over selected streams in catalog
     for stream in catalog.get_selected_streams(state):
-        LOGGER.info("Syncing stream:" + stream.tap_stream_id)
-
-        bookmark_column = stream.replication_key
-        is_sorted = True  # TODO: indicate whether data is sorted ascending on bookmark value
-
         singer.write_schema(
             stream_name=stream.tap_stream_id,
-            schema=stream.schema,
+            schema=stream.schema.to_dict(),
             key_properties=stream.key_properties,
         )
 
-        # TODO: delete and replace this inline function with your own data retrieval process:
-        tap_data = lambda: [{"id": x, "name": "row${x}"} for x in range(1000)]
+    session = requests.Session()
+    headers = {
+        "Authorization": "Basic " + base64.b64encode(
+            (config["username"] + ":" + config['password']).encode('ascii')).decode('ascii'),
+        "Content-Type": "application/json"
+    }
 
-        max_bookmark = None
-        for row in tap_data():
-            # TODO: place type conversions or transformations here
+    sync_resource(
+        url=RESOURCES['repositories']['url'].format(config['workspace']),
+        stream=catalog.get_stream("repositories"),
+        replication_key=RESOURCES['repositories']['replication_key'],
+        session=session,
+        headers=headers,
+        next=lambda repository, session, headers: sync_resource(
+            url=repository['links']['pullrequests']['href']+"?sort=updated_on&state=OPEN,MERGED,DECLINED,SUPERSEDED",
+            stream=catalog.get_stream('repositories_pullrequests'),
+            replication_key=RESOURCES['repositories_pullrequests']['replication_key'],
+            session=session,
+            headers=headers,
+            next=lambda pullrequest, session, headers: sync_resource(
+                url=pullrequest['links']['commits']['href'],
+                stream=catalog.get_stream('repositories_pullrequests_commits'),
+                replication_key=RESOURCES['repositories_pullrequests_commits']['replication_key'],
+                session=session,
+                headers=headers
+            )
+        )
+    )
 
-            # write one or more rows to the stream:
-            singer.write_records(stream.tap_stream_id, [row])
-            if bookmark_column:
-                if is_sorted:
-                    # update bookmark to latest value
-                    singer.write_state({stream.tap_stream_id: row[bookmark_column]})
-                else:
-                    # if data unsorted, save max value until end of writes
-                    max_bookmark = max(max_bookmark, row[bookmark_column])
-        if bookmark_column and not is_sorted:
-            singer.write_state({stream.tap_stream_id: max_bookmark})
+    LOGGER.info("END")
     return
 
 

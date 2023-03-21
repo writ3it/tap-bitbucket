@@ -13,6 +13,7 @@ setup(
         # NB: Pin these to a more specific version for tap reliability
         "singer-python",
         "requests",
+        "strict-rfc3339"
     ],
     entry_points="""
     [console_scripts]

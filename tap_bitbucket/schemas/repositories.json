@@ -1,0 +1,731 @@
+{
+  "type": "object",
+  "selected": true,
+  "replication_key": "updated_on",
+  "properties": {
+    "links": {
+      "type": "object",
+      "properties": {
+        "self": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "html": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "avatar": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "pullrequests": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "commits": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "forks": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "watchers": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "downloads": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        },
+        "clone": {
+          "type": "array",
+          "items":
+            {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            }
+
+        },
+        "hooks": {
+          "type": "object",
+          "properties": {
+            "href": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "href",
+            "name"
+          ]
+        }
+      },
+      "required": [
+        "self",
+        "html",
+        "avatar",
+        "pullrequests",
+        "commits",
+        "forks",
+        "watchers",
+        "downloads",
+        "clone",
+        "hooks"
+      ]
+    },
+    "uuid": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "is_private": {
+      "type": "boolean"
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "html": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "avatar": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "pullrequests": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "commits": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "forks": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "watchers": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "downloads": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "clone": {
+              "type": "array",
+              "items":
+                {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href",
+                    "name"
+                  ]
+                }
+            },
+            "hooks": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            }
+          },
+          "required": [
+            "self",
+            "html",
+            "avatar",
+            "pullrequests",
+            "commits",
+            "forks",
+            "watchers",
+            "downloads",
+            "clone",
+            "hooks"
+          ]
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "is_private": {
+          "type": "boolean"
+        },
+        "scm": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "created_on": {
+          "type": "string"
+        },
+        "updated_on": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer"
+        },
+        "language": {
+          "type": "string"
+        },
+        "has_issues": {
+          "type": "boolean"
+        },
+        "has_wiki": {
+          "type": "boolean"
+        },
+        "fork_policy": {
+          "type": "string"
+        },
+        "project": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "mainbranch": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "links",
+        "uuid",
+        "full_name",
+        "is_private",
+        "scm",
+        "owner",
+        "name",
+        "description",
+        "created_on",
+        "updated_on",
+        "size",
+        "language",
+        "has_issues",
+        "has_wiki",
+        "fork_policy",
+        "project",
+        "mainbranch"
+      ]
+    },
+    "scm": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object"
+        },
+        "created_on": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "links",
+        "created_on",
+        "display_name",
+        "username",
+        "uuid"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "created_on": {
+      "type": "string"
+    },
+    "updated_on": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "language": {
+      "type": "string"
+    },
+    "has_issues": {
+      "type": "boolean"
+    },
+    "has_wiki": {
+      "type": "boolean"
+    },
+    "fork_policy": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "html": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "avatar": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            }
+          },
+          "required": [
+            "html",
+            "avatar"
+          ]
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "is_private": {
+          "type": "boolean"
+        },
+        "created_on": {
+          "type": "string"
+        },
+        "updated_on": {
+          "type": "string"
+        },
+        "has_publicly_visible_repos": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "links",
+        "uuid",
+        "key",
+        "owner",
+        "name",
+        "description",
+        "is_private",
+        "created_on",
+        "updated_on",
+        "has_publicly_visible_repos"
+      ]
+    },
+    "mainbranch": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "commits": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            },
+            "html": {
+              "type": "object",
+              "properties": {
+                "href": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "href",
+                "name"
+              ]
+            }
+          },
+          "required": [
+            "self",
+            "commits",
+            "html"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        "merge_strategies": {
+          "type": "array",
+          "items":
+            {
+              "type": "string"
+            }
+
+        },
+        "default_merge_strategy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "links",
+        "name",
+        "target",
+        "merge_strategies",
+        "default_merge_strategy"
+      ]
+    }
+  },
+  "required": [
+    "links",
+    "uuid",
+    "full_name",
+    "is_private",
+    "parent",
+    "scm",
+    "owner",
+    "name",
+    "description",
+    "created_on",
+    "updated_on",
+    "size",
+    "language",
+    "has_issues",
+    "has_wiki",
+    "fork_policy",
+    "project",
+    "mainbranch"
+  ]
+}
