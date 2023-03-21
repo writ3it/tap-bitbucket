@@ -14,7 +14,7 @@ from singer.schema import Schema
 
 from strict_rfc3339 import rfc3339_to_timestamp
 
-REQUIRED_CONFIG_KEYS = ["start_date", "username", "password"]
+REQUIRED_CONFIG_KEYS = ["start_date", "username", "password", "workspace"]
 LOGGER = singer.get_logger()
 
 

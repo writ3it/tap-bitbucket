@@ -29,7 +29,8 @@ pip install git+https://github.com/writ3it/tap-bitbucket.git
 {
   "username": "writ3it",
   "password": "ChangeMe",
-  "workspace": "Workspace"
+  "workspace": "Workspace",
+  "start_date": "2017-01-01T00:00:00Z"
 }
 ```
 3. Run the application `tap-bitbucket` can be run with:
