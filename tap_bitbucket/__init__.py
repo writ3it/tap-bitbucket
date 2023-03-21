@@ -131,10 +131,14 @@ def sync(config, state, catalog):
     """ Sync data from tap source """
     # Loop over selected streams in catalog
     for stream in catalog.get_selected_streams(state):
+
+        if stream.tap_stream_id not in RESOURCES:
+            continue
+
         singer.write_schema(
             stream_name=stream.tap_stream_id,
             schema=stream.schema.to_dict(),
-            key_properties=stream.key_properties,
+            key_properties=RESOURCES[stream.tap_stream_id]['key_properties'],
         )
 
     session = requests.Session()
