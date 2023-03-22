@@ -108,24 +108,25 @@ def sync_resource(url: str, key: str, replication_key: str, stream, session: Ses
     while True:
         page = session.get(url, headers=headers).json()
         LOGGER.info(url)
-        if len(page['values']) == 0:
-            LOGGER.info("{} is empty".format(url))
 
-        if 'values' not in page:
+        if 'values' in page:
+
+            if len(page['values']) == 0:
+                LOGGER.info("{} is empty".format(url))
+
+            for record in page['values']:
+                record['parent_id'] = key
+                item = transformer.transform(record, stream.schema.to_dict())
+                time_extracted = utils.now()
+                singer.write_record(stream.tap_stream_id, item, time_extracted=time_extracted)
+                singer.write_state({stream.tap_stream_id: item[replication_key]})
+
+                if next is not None:
+                    next(item, session, headers)
+                else:
+                    LOGGER.info("LEAF")
+        else:
             LOGGER.warning("{} returns data without 'values' key.".format(url))
-            break
-
-        for record in page['values']:
-            record['parent_id'] = key
-            item = transformer.transform(record, stream.schema.to_dict())
-            time_extracted = utils.now()
-            singer.write_record(stream.tap_stream_id, item, time_extracted=time_extracted)
-            singer.write_state({stream.tap_stream_id: item[replication_key]})
-
-            if next is not None:
-                next(item, session, headers)
-            else:
-                LOGGER.info("LEAF")
 
         if 'next' in page:
             url = page['next']
