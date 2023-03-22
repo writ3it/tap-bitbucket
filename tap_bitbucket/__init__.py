@@ -102,7 +102,7 @@ def format_timestamp(data, typ, schema):
     return result
 
 
-def sync_resource(url: str,replication_key:str, stream, session: Session, headers: dict, next=None):
+def sync_resource(url: str, key: str, replication_key: str, stream, session: Session, headers: dict, next=None):
     transformer = Transformer(pre_hook=format_timestamp)
 
     while True:
@@ -110,14 +110,20 @@ def sync_resource(url: str,replication_key:str, stream, session: Session, header
         LOGGER.info(url)
         if len(page['values']) == 0:
             LOGGER.info("{} is empty".format(url))
+
+        if 'values' not in page:
+            LOGGER.warning("{} returns data without 'values' key.".format(url))
+            break
+
         for record in page['values']:
+            record['parent_id'] = key
             item = transformer.transform(record, stream.schema.to_dict())
             time_extracted = utils.now()
             singer.write_record(stream.tap_stream_id, item, time_extracted=time_extracted)
             singer.write_state({stream.tap_stream_id: item[replication_key]})
 
             if next is not None:
-                next(item, session, headers)
+                next(item, item[replication_key], session, headers)
             else:
                 LOGGER.info("LEAF")
 
@@ -150,18 +156,21 @@ def sync(config, state, catalog):
 
     sync_resource(
         url=RESOURCES['repositories']['url'].format(config['workspace']),
+        key=config['workspace'],
         stream=catalog.get_stream("repositories"),
         replication_key=RESOURCES['repositories']['replication_key'],
         session=session,
         headers=headers,
-        next=lambda repository, session, headers: sync_resource(
-            url=repository['links']['pullrequests']['href']+"?sort=updated_on&state=OPEN,MERGED,DECLINED,SUPERSEDED",
+        next=lambda repository, key, session, headers: sync_resource(
+            url=repository['links']['pullrequests']['href'] + "?sort=updated_on&state=OPEN,MERGED,DECLINED,SUPERSEDED",
+            key=key,
             stream=catalog.get_stream('repositories_pullrequests'),
             replication_key=RESOURCES['repositories_pullrequests']['replication_key'],
             session=session,
             headers=headers,
-            next=lambda pullrequest, session, headers: sync_resource(
+            next=lambda pullrequest, key, session, headers: sync_resource(
                 url=pullrequest['links']['commits']['href'],
+                key=key,
                 stream=catalog.get_stream('repositories_pullrequests_commits'),
                 replication_key=RESOURCES['repositories_pullrequests_commits']['replication_key'],
                 session=session,
