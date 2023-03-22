@@ -123,7 +123,7 @@ def sync_resource(url: str, key: str, replication_key: str, stream, session: Ses
             singer.write_state({stream.tap_stream_id: item[replication_key]})
 
             if next is not None:
-                next(item, item[replication_key], session, headers)
+                next(item, session, headers)
             else:
                 LOGGER.info("LEAF")
 
@@ -161,16 +161,16 @@ def sync(config, state, catalog):
         replication_key=RESOURCES['repositories']['replication_key'],
         session=session,
         headers=headers,
-        next=lambda repository, key, session, headers: sync_resource(
+        next=lambda repository, session, headers: sync_resource(
             url=repository['links']['pullrequests']['href'] + "?sort=updated_on&state=OPEN,MERGED,DECLINED,SUPERSEDED",
-            key=key,
+            key=repository['uuid'],
             stream=catalog.get_stream('repositories_pullrequests'),
             replication_key=RESOURCES['repositories_pullrequests']['replication_key'],
             session=session,
             headers=headers,
-            next=lambda pullrequest, key, session, headers: sync_resource(
+            next=lambda pullrequest, session, headers: sync_resource(
                 url=pullrequest['links']['commits']['href'],
-                key=key,
+                key=pullrequest['id'],
                 stream=catalog.get_stream('repositories_pullrequests_commits'),
                 replication_key=RESOURCES['repositories_pullrequests_commits']['replication_key'],
                 session=session,

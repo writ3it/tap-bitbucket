@@ -4,6 +4,9 @@
   "selected": true,
   "replication_key": "date",
   "properties": {
+    "parent_id": {
+      "type": "integer"
+    },
     "rendered": {
       "type": "object",
       "properties": {

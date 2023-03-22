@@ -4,6 +4,9 @@
   "selected": true,
   "replication_key": "updated_on",
   "properties": {
+    "parent_id": {
+      "type": "string"
+    },
     "links": {
       "type": "object",
       "properties": {
